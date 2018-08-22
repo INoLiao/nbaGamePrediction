@@ -23,7 +23,6 @@ import numpy as np
 def main():
     # Argument processing
     inFile, outFile, isAppend = argParse()
-    print('isAppend =', isAppend)
 
     # Load .csv
     df_box = pd.read_csv(inFile)
