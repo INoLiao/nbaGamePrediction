@@ -32,3 +32,21 @@
         - default = './nbaGamePair.csv'
     - ##### '--isAppend' = '-ia': Append to the existing file or replace it
         - default = 1
+
+### 3.Grid Search: ./modelTraining/gridSearh.py
+- #### Run the following on the terminal 
+    > python gridSearch.py -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
+
+- #### Argument explanation
+    - ##### '--inFile' = '-if': Input file
+        - default = '../statsCrawler/nbaGamePair.csv'
+    - ##### '--outPath' = '-op': Output path
+        - default = './Z_gridSearchedModel/'
+    - ##### '--dataStart' = '-ds': Specify starting date for training
+        - No default
+    - ##### '--dataEnd' = '-de': Specify ending date for training
+        - No default
+    - ##### '--period' = '-pd': Specify number of games being averaged as an attribute
+        - Default = 5
+    - ##### '--featureSel' = '-fs': Specify 'featureSel'
+        - Default = 3
