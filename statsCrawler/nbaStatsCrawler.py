@@ -148,7 +148,7 @@ def main():
 #-----------------------#
 def argParse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--webDriPath', '-wdp', type = str , default = '/Users/ltc/Projects/webDriver/chromedriver')
+    parser.add_argument('--webDriPath', '-wdp', type = str , default = './webDriver/chromedriver')
     parser.add_argument('--outPathRaw', '-opr', type = str , default = './Z_raw/')
     parser.add_argument('--outPathArranged', '-opa', type = str, default = './Z_arranged/')
     parser.add_argument('--seasonYear', '-sy', type = str, default = '2017-18')
