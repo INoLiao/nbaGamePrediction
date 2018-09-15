@@ -44,7 +44,7 @@
         - default = 1
         
 ### 3. Grid Search: ./modelTraining/gridSearh.py
-- Set search parameter settings by editing paramGen.py and run the following on the terminal. It will generate a LUT as .pkl file.
+- Set search parameter settings by editing paramGen.py and run the following on the terminal. It will generate a LUT as a .pkl file.
     > python3 paramGen.py
 - Run the following on the terminal 
     > python3 gridSearch.py -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
