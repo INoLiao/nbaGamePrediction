@@ -1,5 +1,5 @@
 # NBA Game Prediction Readme
-### 0. Prerequisites
+### 0. Prerequisites: Use virtualenv or install the following packages
 - pip3 install numpy
 - pip3 install pandas
 - pip3 install scipy
@@ -11,7 +11,7 @@
 
 ### 1. Scraping box scores from NBA official site: ./statsCrawler/nbaStatsCrawler.py
 - Run the following on the terminal 
-    > python nbaStatsCrawler.py -sy='2017-18' -st='RegularSeason' -ds='2018-04-01' -pn=10
+    > python3 nbaStatsCrawler.py -sy='2017-18' -st='RegularSeason' -ds='2018-04-01' -pn=10
 
 - Argument explanation
     - '--webDriPath' = '-wdp': Path of chromedriver
@@ -33,7 +33,7 @@
 
 ### 2. Create/Update nbaGamePair.csv: ./statsCrawler/nbaGamePair.py
 - Run the following on the terminal 
-    > python nbaGamePair.py -if='./Z_arranged/2018-08-22-h19m50s28_2017-18_RegularSeason.csv' -ia=1
+    > python3 nbaGamePair.py -if='./Z_arranged/2018-08-22-h19m50s28_2017-18_RegularSeason.csv' -ia=1
 
 - Argument explanation
     - '--inFile' = '-if': Input file
@@ -44,8 +44,10 @@
         - default = 1
         
 ### 3. Grid Search: ./modelTraining/gridSearh.py
+- Set search parameter settings by editing paramGen.py and run the following on the terminal. It will generate a LUT as .pkl file.
+    > python3 paramGen.py
 - Run the following on the terminal 
-    > python gridSearch.py -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
+    > python3 gridSearch.py -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
 
 - Argument explanation
     - '--inFile' = '-if': Input file
