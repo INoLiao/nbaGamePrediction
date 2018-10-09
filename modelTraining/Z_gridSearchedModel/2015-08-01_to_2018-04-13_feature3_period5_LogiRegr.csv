@@ -12,5 +12,5 @@ solver,liblinear
 tol,0.0001
 verbose,0
 warm_start,False
-max_score,0.6696011410361156
-Execution time =,56.50555086135864
+max_score,0.6685404699146278
+Execution time =,165.65197443962097
