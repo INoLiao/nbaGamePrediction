@@ -152,7 +152,7 @@ def argParse():
     parser.add_argument('--outPathRaw', '-opr', type = str , default = './Z_raw/')
     parser.add_argument('--outPathArranged', '-opa', type = str, default = './Z_arranged/')
     parser.add_argument('--seasonYear', '-sy', type = str, default = '2017-18')
-    parser.add_argument('--seasonType', '-st', type = str, default = 'RegularSeason')
+    parser.add_argument('--seasonType', '-st', type = str, default = 'Playoffs')
     parser.add_argument('--dateStart', '-ds', type = str, default = '2018-04-01')
     parser.add_argument('--pageNum', '-pn', type = int, default = 5)
     parser.add_argument('--loadTime', '-lt', type = int, default = 2)

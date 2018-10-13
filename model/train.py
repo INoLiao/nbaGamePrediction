@@ -1,8 +1,8 @@
 ######################################
 ## Author: I-No Liao                ##
-## Date of update: 2018/08/22       ##
+## Date of update: 2018/10/13       ##
 ## Project: NBA Game Prediction     ##
-## - Model Coefficient Grid Search  ##
+## - Model training                 ##
 ##   - Logistic Regression          ##
 ##   - SVM                          ##
 ##   - XGBoost                      ##
@@ -41,7 +41,7 @@ from sklearn.ensemble import AdaBoostClassifier
 #-----------------------#
 def main():
     # Argument processing
-    inFile, outPath, dateStart, dateEnd, period, featureSel = argParse()
+    inFile, outPath, mode, dateStart, dateEnd, period, featureSel = argParse()
     
     # Create path if necessary
     if not os.path.exists(outPath):
@@ -57,23 +57,40 @@ def main():
     # Feature Extraction
     print('>> Feature extraction ...')
     X, Y = featureExtraction(inFile, dateStart, dateEnd, period, featureSel)
-   
-    # Grid Search for all models
-    for model in LUT:
-        startTime = time.time()
-        print('>>', model, '...')
-        NUM_TRIALS = 1
-        max_score, best_estimator = CrossValidationGridSearchNested(X, Y, NUM_TRIALS, 10, LUT[model][2], LUT[model][1], 'roc_auc')
-        # Save coefficient as .csv
-        with open(outPath + trainID + LUT[model][0] + '.csv', 'w') as f:
-            for key, value in zip(best_estimator.get_params().keys(), best_estimator.get_params().values()):
-                f.write(key + ',' + str(value) + '\n')
-            f.write('max_score' + ',' + str(max_score) + '\n')
-            f.write('Execution time =' + ',' + str(time.time() - startTime) + '\n')
-        # Save model as .pkl
-        with open(outPath + trainID + LUT[model][0] + '.pkl', 'wb') as f:
-            pickle.dump(best_estimator, f)
-        print('   Execution time =', time.time() - startTime)
+    
+    # Train model with default parameters
+    if mode == 0:
+        # Default training for all models
+        for model in LUT:
+            startTime = time.time()
+            print('>>', model, '...')
+            estimator = LUT[model][2].fit(X, Y)
+            # Save model as .pkl
+            with open(outPath + trainID + LUT[model][0] + '.pkl', 'wb') as f:
+                pickle.dump(estimator, f)
+            print('   Execution time =', time.time() - startTime)
+
+    # Train model with grid search
+    elif mode == 1:
+        for model in LUT:
+            startTime = time.time()
+            print('>>', model, '...')
+            NUM_TRIALS = 1
+            max_score, best_estimator = CrossValidationGridSearchNested(X, Y, NUM_TRIALS, 10, LUT[model][2], LUT[model][1], 'roc_auc')
+            # Save coefficient as .csv
+            with open(outPath + trainID + LUT[model][0] + '_gs.csv', 'w') as f:
+                for key, value in zip(best_estimator.get_params().keys(), best_estimator.get_params().values()):
+                    f.write(key + ',' + str(value) + '\n')
+                f.write('max_score' + ',' + str(max_score) + '\n')
+                f.write('Execution time =' + ',' + str(time.time() - startTime) + '\n')
+            # Save model as .pkl
+            with open(outPath + trainID + LUT[model][0] + '_gs.pkl', 'wb') as f:
+                pickle.dump(best_estimator, f)
+            print('   Execution time =', time.time() - startTime)
+    else:
+        print('Err: mode should be either 0 or 1')
+        print('mode = 0: grid search disabled')
+        print('mode = 1: grid search enabled')
 
 
 
@@ -82,8 +99,9 @@ def main():
 #-----------------------#
 def argParse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--inFile', '-if', type = str, default = '../statsCrawler/nbaGamePair.csv')
-    parser.add_argument('--outPath', '-op', type = str, default = './Z_gridSearchedModel/')
+    parser.add_argument('--inFile', '-if', type = str, default = '../crawler/nbaGamePair.csv')
+    parser.add_argument('--outPath', '-op', type = str, default = './Z_trainedModel/')
+    parser.add_argument('--mode', '-md', type = int, default = 0)
     parser.add_argument('--dateStart', '-ds', type = str)
     parser.add_argument('--dateEnd', '-de', type = str)
     parser.add_argument('--period', '-pd', type = int, default = 5)
@@ -92,11 +110,12 @@ def argParse():
     args = parser.parse_args()
     inFile = args.inFile
     outPath = args.outPath
+    mode = args.mode
     dateStart = args.dateStart
     dateEnd = args.dateEnd
     period = args.period
     featureSel = args.featureSel
-    return inFile, outPath, dateStart, dateEnd, period, featureSel
+    return inFile, outPath, mode, dateStart, dateEnd, period, featureSel
 
 # @param X: pandas.DataFrame
 # @param featureSel: int

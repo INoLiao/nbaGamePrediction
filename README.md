@@ -9,9 +9,9 @@
 - pip3 install xgboost
 
 
-### 1. Scraping box scores from NBA official site: ./statsCrawler/nbaStatsCrawler.py
-- Run the following on the terminal 
-    > python3 nbaStatsCrawler.py -sy='2017-18' -st='RegularSeason' -ds='2018-04-01' -pn=10
+### 1. Scraping box scores from NBA official site: https://stats.nba.com/teams/boxscores/
+- Run ./crawler/nbaStatsCrawler.py on the terminal
+    > python3 nbaStatsCrawler.py -sy='2017-18' -st='Playoffs' -ds='2018-04-01' -pn=10
 
 - Argument explanation
     - '--webDriPath' = '-wdp': Path of chromedriver
@@ -22,8 +22,8 @@
         - default = './Z_arranged/'
     - '--seasonYear' = '-sy': Specify the season to be scraped
         - default = '2017-18'
-    - '--seasonType' = -st': Specify the season type ('Preseason', 'RegularSeason', 'Playoffs', 'All-Star') 
-        - default = 'RegularSeason'
+    - '--seasonType' = -st': Specify the season type ('Preseason', 'RegularSeason', 'Playoffs', 'All-Star')
+        - default = 'Playoffs'
     - '--dateStart' = '-ds': Scrape box from date of 'dateStart' to present
         - default = '2018-04-01'
     - '--pageNum' = '-pn': Specify number of pages to be scraped
@@ -31,8 +31,9 @@
     - '--loadTime' = '-lt': Waiting time for web loading
         - default = 2
 
-### 2. Create/Update nbaGamePair.csv: ./statsCrawler/nbaGamePair.py
-- Run the following on the terminal 
+
+### 2. Create/Update nbaGamePair.csv
+- Run ./crawler/nbaGamePair.py on the terminal 
     > python3 nbaGamePair.py -if='./Z_arranged/2018-08-22-h19m50s28_2017-18_RegularSeason.csv' -ia=1
 
 - Argument explanation
@@ -42,18 +43,22 @@
         - default = './nbaGamePair.csv'
     - '--isAppend' = '-ia': Append to the existing file or replace it
         - default = 1
-        
-### 3. Grid Search: ./modelTraining/gridSearh.py
-- Set search parameter settings by editing paramGen.py and run the following on the terminal. It will generate a LUT as a .pkl file.
+
+
+### 3. Model
+- Set grid search settings by editing paramGen.py and run ./model/paramGen.py on the terminal. It will generate a LUT named as paramLUT.pkl.
     > python3 paramGen.py
-- Run the following on the terminal 
-    > python3 gridSearch.py -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
+    
+- Run ./model/train.py on the terminal 
+    > python3 train.py -md=0 -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
 
 - Argument explanation
     - '--inFile' = '-if': Input file
-        - default = '../statsCrawler/nbaGamePair.csv'
+        - default = '../crawler/nbaGamePair.csv'
     - '--outPath' = '-op': Output path
-        - default = './Z_gridSearchedModel/'
+        - default = './Z_trainedModel/'
+    - '--mode' = '-md': 0 for default model and 1 for grid search
+        - default = 0
     - '--dataStart' = '-ds': Specify starting date for training
         - No default
     - '--dataEnd' = '-de': Specify ending date for training
@@ -62,3 +67,5 @@
         - Default = 5
     - '--featureSel' = '-fs': Specify 'featureSel'
         - Default = 3
+
+    
