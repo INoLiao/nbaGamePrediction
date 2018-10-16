@@ -99,7 +99,6 @@ def main():
             f.write('team_A' + ',' + 'None' + '\n')
         else:
             f.write('team_A' + ',' + team_A + '\n')
-
         if team_B is None:
             f.write('team_B' + ',' + 'None' + '\n')
         else:
