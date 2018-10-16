@@ -3,6 +3,8 @@ featureSel,3
 Predict from,2018-04-14
 Predict to,2018-06-08
 Model/Train ID,2015-08-01_to_2018-04-13_feature3_period5
+team_A,None
+team_B,None
 -----,-----
 LogiRegr,0.7195121951219512
 LogiRegr_GS,0.7073170731707317

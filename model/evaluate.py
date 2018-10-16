@@ -74,6 +74,14 @@ def main():
     print('featureSel =', featureSel)
     print('Predict from', dateStart, 'to', dateEnd)
     print('Model/Train ID =', '_'.join(models[0].split('_')[:-1]))
+    if team_A is None:
+        print('team_A = All possible teams')
+    else:
+        print('team_A =', team_A)
+    if team_B is None:
+        print('team_B = All possible teams')
+    else:
+        print('team_B =', team_B)
     print('.....................................')
     for x in accuLUT:
         print(x, '= %.3f' %(accuLUT[x]))
@@ -87,6 +95,15 @@ def main():
         f.write('Predict from' + ',' + dateStart + '\n')
         f.write('Predict to' + ',' + dateEnd + '\n')
         f.write('Model/Train ID' + ',' + '_'.join(models[0].split('_')[:-1]) + '\n')
+        if team_A is None:
+            f.write('team_A' + ',' + 'None' + '\n')
+        else:
+            f.write('team_A' + ',' + team_A + '\n')
+
+        if team_B is None:
+            f.write('team_B' + ',' + 'None' + '\n')
+        else:
+            f.write('team_B' + ',' + team_B + '\n')
         f.write('-----' + ',' + '-----' + '\n')
         for x in accuLUT:
             f.write(x + ',' + str(accuLUT[x]) + '\n')
