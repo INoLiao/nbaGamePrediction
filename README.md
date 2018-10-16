@@ -11,7 +11,7 @@
 
 ### 1. Scraping box scores from NBA official site: https://stats.nba.com/teams/boxscores/
 - Directory: ./crawler/
-- Run nbaStatsCrawler.py on the terminal
+- Run nbaStatsCrawler.py
     > python3 nbaStatsCrawler.py -sy='2017-18' -st='Playoffs' -ds='2018-04-01' -pn=10
 
 
@@ -36,7 +36,7 @@
 
 ### 2. Create/Update nbaGamePair.csv
 - Directory: ./crawler/
-- Run nbaGamePair.py on the terminal 
+- Run nbaGamePair.py
     > python3 nbaGamePair.py -if='./Z_arranged/2018-08-22-h19m50s28_2017-18_RegularSeason.csv' -ia=1
 
 
@@ -51,11 +51,11 @@
 
 ### 3. Model Training
 - Directory: ./model/
-- Set grid search settings by editing paramGen.py and run paramGen.py on the terminal. It will generate a LUT named as paramLUT.pkl.
+- Set grid search settings by editing paramGen.py and run paramGen.py. It will generate a LUT named as paramLUT.pkl.
     > python3 paramGen.py
     
     
-- Run train.py on the terminal 
+- Run train.py
     > python3 train.py -md=0 -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
 
 
@@ -79,13 +79,13 @@
 ### 4. Model Evaluation
 - Directory: ./model/
 - Edit model path in evaluate.py
-    - At '# Specify model', please specify the model name
+    - At '# Specify model', please specify the model name according to the existing models within ./model/Z_trainedModel/
     - Be sure the parameters used for training and evaluating are the same
         - period
         - featureSel
         
         
-- Run evaluate.py on the terminal
+- Run evaluate.py
     > python3 evaluate.py -md=2 -ds='2018-04-14' -de='2018-06-08' -pd=5 -fs=3
     
     - An evaluation report will be generated: ./Z_evaluation/date_report.csv
@@ -108,5 +108,7 @@
         - Default = 3
     - '--team_A' = '-ta': Specify the interested team A
         - Default = None (All games in the specified period)
+        - Others = 'ATL', 'BOS', 'BKN', 'CHA', 'CHI', 'CLE', 'DAL', 'DEN', 'DET', 'GSW' 'HOU', 'IND', 'LAC', 'LAL', 'MEM', 'MIA', 'MIL', 'MIN', 'NOP', 'NYK', 'OKC', 'ORL', 'PHI', 'PHX', 'POR', 'SAC', 'SAS', 'TOR', 'UTA', 'WAS'
     - '--team_B' = '-tb': Specify the interested team B
         - Default = None (All games in the specified period)
+        - Others = 'ATL', 'BOS', 'BKN', 'CHA', 'CHI', 'CLE', 'DAL', 'DEN', 'DET', 'GSW' 'HOU', 'IND', 'LAC', 'LAL', 'MEM', 'MIA', 'MIL', 'MIN', 'NOP', 'NYK', 'OKC', 'ORL', 'PHI', 'PHX', 'POR', 'SAC', 'SAS', 'TOR', 'UTA', 'WAS'
