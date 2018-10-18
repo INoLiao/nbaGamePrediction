@@ -51,24 +51,33 @@ def main():
     content = []
     curSoup = BeautifulSoup(driver.page_source, 'html.parser')
     info = curSoup.findAll('select', {'class':'stats-table-pagination__select'})
-    for x in info[-1]:
-        content.append(x.get_text())
-    maxPage = int(content[-1])
+    try:
+        for x in info[-1]:
+            content.append(x.get_text())
+        maxPage = int(content[-1])
+        isPagination = True
+    except:
+        isPagination = False
+        maxPage = 1
+        print('Pagination prohibited. Set maxPage to %d' %(maxPage))
 
-    # Load pages 
+    # Load pages
     pages = []
     pageNum = min(pageNum, maxPage)
-    pageSel = Select(driver.find_element_by_class_name('stats-table-pagination__select'))
-    for i in range(1, pageNum+1):
-        # Pagination (Mimic a browser that clicks "next page".)
-        pageSel.select_by_value('number:'+str(i))
-        # Wait for loading the web
-        time.sleep(loadTime)
-        # Capture current page
+    if isPagination:
+        pageSel = Select(driver.find_element_by_class_name('stats-table-pagination__select'))
+        for i in range(1, pageNum+1):
+            # Pagination (Mimic a browser that clicks "next page".)
+            pageSel.select_by_value('number:'+str(i))
+            # Wait for loading the web
+            time.sleep(loadTime)
+            # Capture current page
+            pages.append(driver.page_source)
+    else:
         pages.append(driver.page_source)
-        print('----- Note: Page %d scraping completed. -----' %(i))
+    # Shutdown the browser
     driver.quit()
-    print('----- Note: %d of %d page(s) scraped. -----' %(pageNum, maxPage))
+    print('----- Note: %d of %d page(s) scraped -----' %(pageNum, maxPage))
 
     # >> Raw Box Acquisition
     # Scrape box from each page and create DataFrame
@@ -86,6 +95,8 @@ def main():
         boxData = []
         for i in range(len(boxes)//2):
             boxData.append([x for x in boxes[i].split('\n') if x != ''])
+            if len(boxData[-1]) != 24:
+                boxData.pop()
         for i in range(len(boxData)):
             for j in range(4, len(boxData[i])):
                 if j == 8 or j == 11 or j == 14:
@@ -140,6 +151,9 @@ def main():
 
     # Save arranged box as .csv
     df_box.to_csv(outPathArranged + dateOfCrawl + '_' + seasonYear + '_' + seasonType + '.csv', encoding='utf-8', index=False, float_format='%.3f')
+    
+    # End of scraping
+    print('----- Number of data scraped: %d -----' %(len(df_box)))
 
 
 
