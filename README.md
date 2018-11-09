@@ -12,7 +12,7 @@
 ### 1. Scraping box scores from NBA official site: https://stats.nba.com/teams/boxscores/
 - Directory: ./crawler/
 - Run nbaStatsCrawler.py
-    > python3 nbaStatsCrawler.py -sy='2017-18' -st='Playoffs' -ds='2018-04-01' -pn=10
+    > python3 nbaStatsCrawler.py -sy='2018-19' -st='RegularSeason' -ds='2018-10-16' -pn=10
 
 
 - Argument explanation
@@ -23,11 +23,11 @@
     - '--outPathArranged' = '-opa': Arranged box output path
         - default = './Z_arranged/'
     - '--seasonYear' = '-sy': Specify the season to be scraped
-        - default = '2017-18'
+        - No default
     - '--seasonType' = -st': Specify the season type ('Preseason', 'RegularSeason', 'Playoffs', 'All-Star')
-        - default = 'Playoffs'
+        - No default
     - '--dateStart' = '-ds': Scrape box from date of 'dateStart' to present
-        - default = '2018-04-01'
+        - No default
     - '--pageNum' = '-pn': Specify number of pages to be scraped
         - default = 5
     - '--loadTime' = '-lt': Waiting time for web loading
