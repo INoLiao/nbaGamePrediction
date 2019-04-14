@@ -56,7 +56,7 @@
     
     
 - Run train.py
-    > python3 train.py -md=0 -ds='2017-08-01' -de='2018-04-13' -pd=5 -fs=3
+    > python3 train.py -md=1 -ds='2016-08-01' -de='2019-04-10' -pd=5 -fs=3
 
 
 - Argument explanation
@@ -86,7 +86,7 @@
         
         
 - Run evaluate.py
-    > python3 evaluate.py -md=2 -ds='2018-04-14' -de='2018-06-08' -pd=5 -fs=3
+    > python3 evaluate.py -md=1 -ds='2019-04-13' -de='2018-06-08' -pd=5 -fs=3
     
     - An evaluation report will be generated: ./Z_evaluation/date_report.csv
     
