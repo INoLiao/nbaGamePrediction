@@ -86,7 +86,7 @@
         
         
 - Run evaluate.py
-    > python3 evaluate.py -md=1 -ds='2019-04-13' -de='2018-06-08' -pd=5 -fs=3
+    > python3 evaluate.py -md=1 -ds='2018-04-14' -de='2018-06-08' -pd=5 -fs=3
     
     - An evaluation report will be generated: ./Z_evaluation/date_report.csv
     
