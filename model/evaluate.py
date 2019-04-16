@@ -35,12 +35,12 @@ def main():
 
     # Specify models
     models = []
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_LogiRegr')
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_SVM')
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_XGBoost')
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_RandomForest')
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_GBDT')
-    models.append('2016-08-01_to_2019-04-10_feature3_period5_AdaBoost')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_LogiRegr')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_SVM')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_XGBoost')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_RandomForest')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_GBDT')
+    models.append('2016-08-01_to_2019-04-10_feature3_period3_AdaBoost')
     
     # Import models
     modelsName = {}

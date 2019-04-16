@@ -1,0 +1,16 @@
+C,100
+class_weight,None
+dual,False
+fit_intercept,True
+intercept_scaling,1
+max_iter,300
+multi_class,ovr
+n_jobs,-1
+penalty,l2
+random_state,None
+solver,liblinear
+tol,0.0001
+verbose,0
+warm_start,False
+max_score,0.6509122753472265
+Execution time =,68.6250388622284
