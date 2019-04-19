@@ -1,0 +1,7 @@
+algorithm,SAMME.R
+base_estimator,None
+learning_rate,0.1
+n_estimators,600
+random_state,None
+max_score,0.6585512860619595
+Execution time =,1000.4661550521851
