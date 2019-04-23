@@ -277,7 +277,7 @@ def gameAttriGen(dfFile, dateStart, dateEnd, period=5, Team_A=None, Team_B=None,
 # @param period: int (Number of previous games to be considered)
 # @param Team_A, Team_B: str (If both are None, predict all games within the date range)
 # @param featureSel: int
-# @return None
+# @return dict{str: float}
 # gamePrediction() prints the predicted game W/L results.
 def gamePrediction(dfFile, modelsLUT, dateStart, dateEnd, period=5, Team_A=None, Team_B=None, featureSel=None):
     X_attri, Y_truth = gameAttriGen(dfFile, dateStart, dateEnd, period, Team_A, Team_B, featureSel)
