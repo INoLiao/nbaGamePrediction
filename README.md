@@ -37,7 +37,7 @@
 ### 2. Create/Update nbaGamePair.csv
 - Directory: ./crawler/
 - Run nbaGamePair.py
-    > python3 nbaGamePair.py -if='./Z_arranged/2018-08-22-h19m50s28_2017-18_RegularSeason.csv' -ia=1
+    > python3 nbaGamePair.py -if='./Z_arranged/2019-04-24-h13m12s53_2018-19_Playoffs.csv' -ia=1
 
 
 - Argument explanation
@@ -86,7 +86,7 @@
         
         
 - Run evaluate.py
-    > python3 evaluate.py -md=1 -ds='2018-04-14' -de='2018-06-08' -pd=5 -fs=3
+    > python3 evaluate.py -md=1 -ds='2019-04-13' -de='2019-06-20' -pd=5 -fs=3
     
     - An evaluation report will be generated: ./Z_evaluation/date_report.csv
     
