@@ -1,0 +1,14 @@
+Accuracy Report
+featureSel,3
+Predict from,2019-04-13
+Predict to,2019-06-20
+Model/Train ID,2016-08-01_to_2019-04-10_feature3_period5
+team_A,None
+team_B,None
+-----,-----
+LogiRegr_GS,0.6818181818181818
+SVM_GS,0.6590909090909091
+XGBoost_GS,0.6136363636363636
+RandomForest_GS,0.6818181818181818
+GBDT_GS,0.6136363636363636
+AdaBoost_GS,0.6136363636363636
